@@ -1,6 +1,8 @@
+package application;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.file.FileSystems;
+import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -8,12 +10,16 @@ import javax.imageio.ImageIO;
 
 public class Sprite {
 	
-	private BufferedImage spriteSheet;								// sprite sheet image
-	private Path myDir =  FileSystems.getDefault().getPath("C:\\");	// Default path set for sprite sheet location
+	private BufferedImage spriteSheet;					// sprite sheet image
+	private Path myDir =  FileSystems.getDefault().getPath("C:\\");		// Default path set for sprite sheet location
 
 	//allows to set custom path for location of sprite sheet
 	public void setPath(String path) {
-		myDir = Paths.get(path);
+		try {
+			myDir = Paths.get(path);
+		} catch (InvalidPathException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	// loads the sprite sheet by name in preset location and also return the spritesheet as value
@@ -22,9 +28,7 @@ public class Sprite {
 		BufferedImage sprite = null;
 		// get file from root location
 		try {
-			
 			sprite = ImageIO.read(myDir.resolve(file + ".png").toFile());
-			
 		} catch (IOException e) {
 			
 			e.printStackTrace();
@@ -44,6 +48,14 @@ public class Sprite {
 		} 
 			return spriteSheet.getSubimage(xPos *tileSize , yPos * tileSize , tileSize, tileSize);
 			
+	}
+
+	public void setSpriteSheet (BufferedImage sprite) {
+		this.spriteSheet = sprite;
+	}
+	
+	public BufferedImage getSpriteSheet () {
+		return spriteSheet;
 	}
 	
 }//Sprite end
