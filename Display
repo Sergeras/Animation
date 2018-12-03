@@ -19,24 +19,24 @@ import javafx.scene.layout.BorderPane;
 
 
 public class Display extends Application {
-	int xSize = 400;							            //Set size for the window
-	int ySize = 400;							            //Set size for the window
+	int xSize = 400;				//Set size for the window
+	int ySize = 400;				//Set size for the window
 	Sprite sprite = new Sprite();		
 	String imgName = "Phoenix_SpriteSheet";		//Name for the file
 	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			sprite.setPath("D:\\stazene soubory\\New folder");							            // Path needs to be set to place where is sprite sheet
+			sprite.setPath("D:\\stazene soubory\\New folder");				// Path needs to be set to place where is sprite sheet
 			AnimatedSprite animation = new AnimatedSprite(sprite.loadSprite(imgName));	// Sprite sheet is loaded into animation class
-			animation.loadAnimation(1,0,32,6);											                    // Animation is loaded into the class from the sprite sheet
-			animation.setCycleCount(Animation.INDEFINITE);								              // Set to go for indefinite cycles, can be adjusted
-			animation.play();															                              // Starts the animation
-			ImageView imageView = animation.imageView;									                // This is where interpolate from animatedSprite puts the images from
+			animation.loadAnimation(1,2,32,6);						// Animation is loaded into the class from the sprite sheet
+			animation.setCycleCount(Animation.INDEFINITE);					// Set to go for indefinite cycles, can be adjusted
+			animation.play();								// Starts the animation
+			ImageView imageView = animation.getImageView();					// This is where interpolate from animatedSprite puts the images from
 			imageView.setPreserveRatio(true);				
 			
 			
-			BorderPane root = new BorderPane(imageView); 								                // Add the information in the middle of screen
+			BorderPane root = new BorderPane(imageView); 					// Add the information in the middle of screen
 			Scene scene = new Scene(root,xSize,ySize);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setTitle("Gif Display");
