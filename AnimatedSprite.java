@@ -15,7 +15,7 @@ public class AnimatedSprite extends Transition {
 	private Duration duration = Duration.millis(1000); 	// set as standart length of the animation
 	private int totalFrame = 0;				// Total amount of frames in animation
 	private BufferedImage spriteSheet;			// To hold spriteSheet
-	ImageView imageView = new ImageView(); 			// to be refreshed when animation is called
+	private ImageView imageView = new ImageView(); 		// to be refreshed when animation is called
 	
 	// Place to store all frames/images
 	private java.util.List<Frame> frames = new ArrayList<Frame>();
@@ -64,6 +64,10 @@ public class AnimatedSprite extends Transition {
 	// get duration
 	public Duration getDuration() {
 		return this.duration;
+	}
+	//get imageview
+	public ImageView getImageView () {
+		return this.imageView;
 	}
 	
 	/*Function use fraction of value thats rounded up to next full number thats then used for getting specific frame. 
